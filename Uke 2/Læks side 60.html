@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Side 60</title>
+</head>
+<body>
+
+    <script>
+
+        let høyde = 5;
+        let bredde = 8;
+        let radius = prompt("Radius: ");
+        let poeng = prompt("Anntall poeng");
+        let muligePoeng = prompt("Anntall mulige poeng");
+        let personHøyde = prompt("Høyde");
+        let vekt = prompt("Vekt");
+
+        radius = Number(radius);
+        let volum = Math.PI * 4 * Math.pow(radius, 3) / 3;
+        let omkrets = Math.PI * 2 * radius;
+        let areal = Math.PI *4 * Math.pow(radius, 2);
+
+        let sum1 = Number(høyde) * Number(bredde);
+        let sum2 = Number(høyde) * 2 + Number(bredde) *2;
+
+        let tall1 = Math.random() * 6;
+        let helTall1 = Math.ceil(tall1);
+
+        let tall2 = Math.random() * 10;
+        let helTall2 = Math.round(tall2);
+
+        let tall3 = Math.random() * 10 + 10;
+        let helTall3 = Math.round(tall3);
+
+        let karakter = poeng / muligePoeng * 6;
+        let helKarakter = Math.round(karakter);
+
+        let bmi = vekt * Math.pow(personHøyde, 2);
+
+
+
+        document.write(`Arealet av rektangelet er ${høyde} * ${bredde} = ${sum1}`); //Kommentar
+        document.write("<br>");
+        document.write(`Omkretsen av rektangelet er ${høyde} * 2 + ${bredde} * 2 = ${sum2}`); /*Kommentarer*/'' +
+        document.write("<br>Mellom 1 og 6: ")
+        document.write(helTall1);
+        document.write("<br>Mellom 0 og 10: ");
+        document.write(helTall2);
+        document.write("<br>Mellom 0 og 20: ");
+        document.write(helTall3);
+        document.write("<br>Volum av sirkel: ");
+        document.write( volum.toFixed(2));
+        document.write("<br>Areal av sirkel: ");
+        document.write( areal.toFixed(2));
+        document.write("<br>Omkrets av sirkel: ");
+        document.write( omkrets.toFixed(2));
+        document.write("<br>Karakter: ");
+        document.write(helKarakter);
+        document.write("<br>BMI kalkulator: ");
+        document.write(bmi);
+
+
+
+
+    </script>
+
+</body>
+</html>

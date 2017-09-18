@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star</title>
+    <style>
+
+        body{
+            background-color: black;
+        }
+        .stjerne{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: yellow;
+            transition: 1s linear;
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+
+        var x = 0;
+        while(x<1000){
+            var stjerne = document.createElement("div");
+            stjerne.className = "stjerne";
+            stjerne.style.left = Math.random() * innerWidth + "px";
+            stjerne.style.top = Math.random() * innerHeight + "px";
+
+            document.body.appendChild(stjerne);
+            x++;
+        }
+
+        function scramble() {
+
+            var stjerner = document.getElementsByClassName("stjerne");
+            for(var stjerne of stjerner){
+                stjerne.style.left = Math.random() * innerWidth + "px";
+                stjerne.style.top = Math.random() * innerHeight + "px";
+            }
+
+        }
+
+        setInterval(scramble, 1000)
+
+    </script>
+
+</body>
+</html>

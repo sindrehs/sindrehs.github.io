@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oppg3</title>
+</head>
+<body>
+
+<canvas id="minCanvas" height="662" width="1366"></canvas>
+
+    <script>
+
+
+        let minCanvas = document.getElementById("minCanvas");
+        var ctx = minCanvas.getContext("2d");
+        var hoide = innerHeight;
+        var bredde = innerWidth;
+        var y = 1;
+        minCanvas.height = hoide;
+        minCanvas.width = bredde;
+
+        while (y < hoide) {
+
+            ctx.beginPath();
+
+            ctx.moveTo(0,y);
+            ctx.strokeStyle = `hsla(${Math.random()*360},100%,50%,0.4)`;
+            ctx.lineTo(innerWidth, y);
+            ctx.stroke();
+            y += 10;
+
+
+            ctx.closePath();
+        }
+
+
+
+    </script>
+
+</body>
+</html>

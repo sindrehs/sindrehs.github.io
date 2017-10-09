@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio</title>
+    <style>
+
+        body{
+            margin: 0;
+        }
+        #canvas{
+            background-color: darkblue;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas width="200" height="200" id="canvas">    </canvas>
+
+    <script>
+
+        var ac = new AudioContext();
+
+
+        for (var x=0; x<800; x++){
+
+            var osc = ac.createOscillator();
+            osc.connect(ac.destination);
+            osc.frequency.value = x;
+            osc.start(x/500);
+            osc.stop(x/100+0.01);
+        }
+
+        for (var y=1000; y>0; y--){
+
+            var osc = ac.createOscillator();
+            osc.connect(ac.destination);
+            osc.frequency.value = y;
+            osc.start(y/100);
+            osc.stop(y/300+0.01);
+        }
+
+        var osc = ac.createOscillator();
+        osc.connect(ac.destination);
+        osc.frequency.value = 100;
+        osc.start(0);
+        osc.stop(12);
+
+        var osc = ac.createOscillator();
+        osc.connect(ac.destination);
+        osc.frequency.value = 5000;
+        osc.start(3);
+        osc.stop(20);
+
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+
+        function sirkel() {
+            for(var x=0; x<1000; x+=2){
+                ctx.beginPath();
+
+                ctx.strokeStyle = `hsl(${Math.random()*180}, 100%, 50%)`;
+                ctx.arc(innerWidth/2, innerHeight/2, x, 0, 2*Math.PI);
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+        setInterval(sirkel, 10)
+
+
+
+    </script>
+
+</body>
+</html>

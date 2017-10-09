@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dobbel løkke</title>
+    <style>
+
+        body{
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+
+        for(var i=1; i<=10; i++){
+            for(var j=1; j<=10; j++){
+
+                var div = document.createElement("div");
+                document.body.appendChild(div);
+                div.innerHTML = `${i} x ${j} = ${i*j}`;
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+
+    <input type="text" id="username">
+    <input type="password" id="password">
+    <h1 id="info"></h1>
+    <button onclick="sjekk()">Logg inn</button>
+
+    <script>
+
+        let username = document.getElementById("username");
+        let password = document.getElementById("password");
+        let info = document.getElementById("info");
+
+        function sjekk() {
+            if (username.value === "Jonas" && password.value === "AP"){
+                info.innerHTML = "Du er nå logget inn";
+            } else {
+                info.innerHTML = "Feil passord eller brukernavn";
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Læks 2</title>
+</head>
+<body>
+
+    <canvas id="minCanvas" height="100" width="200">
+
+    </canvas>
+
+    <script>
+
+        var minCanvas = document.getElementById("minCanvas");
+        var ctx = minCanvas.getContext("2d");
+
+        minCanvas.width = innerWidth;
+        minCanvas.height = innerHeight;
+
+        function draw() {
+
+            var x = Math.random() * innerWidth;
+            var y = Math.random() * innerHeight;
+            var z = Math.random();
+
+            ctx.fillStyle = "black";
+            ctx.fillRect(x, y, z*250, z*50);
+            ctx.fillStyle = "red";
+            ctx.fillRect(x, y+50*z, z*250, z*50);
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(x, y+100*z, z*250, z*50);
+
+
+        }
+
+        function drew() {
+
+            var x = Math.random() * innerWidth;
+            var y = Math.random() * innerHeight;
+            var z = Math.random();
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(x, y, z*250, z*180);
+            ctx.fillStyle = "white";
+            ctx.arc(x, y, z*100, 0, Math.PI * 180)
+
+
+
+        }
+
+
+        setInterval(draw, 200);
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

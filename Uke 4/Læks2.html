@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Læks 2</title>
+</head>
+<body>
+
+    <img id="imgPokal">
+
+    <script>
+
+        var svar = prompt("Hva er lettest, oksygen eller hydrogen?");
+        var imgPokal = document.getElementById("imgPokal");
+
+
+        if(svar === "hydrogen"){
+            document.write("Du svarte riktig");
+            imgPokal.src = "pokal1.jpg";
+        }
+        else{
+            document.write("Du svarte feil.");
+            imgPokal.src = " pokal2.jpg";
+        }
+
+    </script>
+
+</body>
+</html>

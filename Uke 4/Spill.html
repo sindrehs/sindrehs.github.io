@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tennis</title>
+    <style>
+
+        body{
+            margin: 0;
+        }
+        #canvas{
+            background-color: black;
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas">
+
+
+
+    </canvas>
+
+    <script>
+
+        let canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+        var x = 0;
+        var y = 300;
+        var r = 50;
+
+        var xRetning = 2;
+        var yRetning = 2;
+        var fart = 1;
+
+        var image = new Image();
+        image.src = "Johan.PNG";
+
+        function tegnPrikk() {
+            //ctx.clearRect(0,0, innerWidth, innerHeight);
+
+            ctx.fillStyle =`hsla(${Math.random()*360}, 100%, 50%, 0.5)`;
+            ctx.beginPath();
+
+            ctx.arc(x, y, r, 0, Math.PI *2);
+            ctx.fill();
+            ctx.closePath();
+
+            x = x+xRetning * fart;
+            y = y+yRetning * fart;
+
+            if(x>innerWidth){
+                xRetning = -1;
+
+            }
+            if(x<0){
+                xRetning=1;
+            }
+
+            if(y > innerHeight){
+                yRetning = -1;
+
+            }
+            if(y<0){
+                yRetning=1;
+            }
+
+
+        }
+        setInterval(tegnPrikk, 1);
+
+
+        var krymp = true;
+
+        function ny() {
+            if(krymp) {
+                r--;
+            } else {
+                r++;
+            }
+
+            if(r === 0){
+                krymp = false;
+            }
+            if (r === 50) {
+                krymp = true;
+            }
+        }
+
+
+        setInterval(ny, 5)
+
+        </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Løks2.1</title>
+</head>
+<body>
+
+<img id="imgDice">
+
+<script>
+
+
+
+        var terning1 = Math.ceil(Math.random() * 6);
+
+
+
+        if(terning1===1){
+            document.write("Du fikk 1");
+            imgDice.src = "1.png";
+            if(terning1!==2){
+                document.write(" og ikke noe annet")
+            }
+        }
+        if(terning1===2){
+            document.write("Du fikk 2");
+            imgDice.src = "2.png"
+        }
+        if(terning1===3){
+            document.write("Du fikk 3");
+            imgDice.src = "3.svg"
+        }
+
+        if(terning1===4){
+            document.write("Du fikk 4");
+            imgDice.src = "4.png"
+        }
+        if(terning1===5){
+            document.write("Du fikk 5");
+            imgDice.src = "5.jpg"
+        }
+        if(terning1===6){
+            document.write("Du fikk 6");
+            imgDice.src = "6.jpg"
+        }
+
+
+
+    </script>
+
+</body>
+</html>

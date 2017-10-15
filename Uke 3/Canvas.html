@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas2</title>
+</head>
+<body>
+
+<canvas id="minCanvas" height="1100" width="2500">
+
+</canvas>
+
+    <script>
+
+        var minCanvas = document.getElementById("minCanvas");
+        var ctx = minCanvas.getContext("2d");
+
+        function draw() {
+
+
+            var x = Math.random() * 1000;
+            var y = Math.random() * 2000;
+
+            ctx.fillStyle = `hsl(${Math.random()*360}, 100%, 50%)`;
+            ctx.fillRect(x,y, 50, 50);
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(x+10, y+10, 5, 5);
+            ctx.fillRect(x+35, y+10, 5, 5);
+
+            ctx.fillRect(x+10, y+30, 30, 5);
+        }
+
+        setInterval(draw, 1);
+
+
+    </script>
+
+</body>
+</html>

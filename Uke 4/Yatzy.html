@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yatzy</title>
+</head>
+<body>
+
+    <script>
+
+        var s = Math.pow(6,4);
+        document.body.innerHTML = "<h1>" + s + "</h1>";
+
+        var antallKast = 0;
+
+        function sjekkY() {
+
+            antallKast++;
+            var terning1 = Math.ceil(Math.random() * 6);
+            var terning2 = Math.ceil(Math.random() * 6);
+            var terning3 = Math.ceil(Math.random() * 6);
+            var terning4 = Math.ceil(Math.random() * 6);
+            var terning5 = Math.ceil(Math.random() * 6);
+
+            var sum = terning1 + terning2;
+            if(sum >= 4 && sum<=6){
+                console.log("Summen er mellom 4 og 6");
+            }
+
+            if(terning1 === terning2){
+                document.write("Par!");
+            }
+
+
+            if(terning1===terning2 && terning2 === terning3 && terning3===terning4 && terning4===terning5){
+                document.body.innerHTML += "<p>Du fikk yatzy på " + antallKast + " kast</p>";
+                antallKast = 0;
+            }
+        }
+
+
+
+
+
+
+        setInterval(sjekkY, 1);
+
+    </script>
+
+</body>
+</html>

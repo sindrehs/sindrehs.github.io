@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReturHTML</title>
+</head>
+<body>
+
+    <ul id="handleliste"></ul>
+
+    <script>
+
+        let handleliste = document.getElementById("handleliste");
+
+
+        //tar navn og lager listepunkt
+        function lagListepunkt() {
+
+            var li = `<li>${vare}</li>`;
+            return li;
+
+        }
+
+        handleliste.innerHTML += lagListepunkt("Sitron");
+        handleliste.innerHTML += lagListepunkt("Appelsin");
+        handleliste.innerHTML += lagListepunkt("Suppe");
+
+    </script>
+
+</body>
+</html>

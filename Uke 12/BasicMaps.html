@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dyrereg</title>
+</head>
+<body>
+
+    <script>
+
+        var dyreregister = new Map();
+
+        dyreregister.set("001", "Kåre Ku");
+        dyreregister.set("002", "Sander Sau");
+        dyreregister.set("003", "Ronny Rev");
+        dyreregister.set("004", "Gusse Gås");
+
+        dyreregister.delete("002");
+
+        console.log(dyreregister.size);
+        console.log(dyreregister);
+        console.log(dyreregister.has("001"));
+
+
+    </script>
+
+</body>
+</html>

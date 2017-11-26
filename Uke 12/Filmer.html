@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Filmregister</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css">
+</head>
+<body>
+<form id="skjema">
+
+    <input id="inpID" type="text" placeholder="Movie ID">
+    <input id="inpTittel" type="text" placeholder="Tittel">
+    <input id="inpTrailer" type="text" placeholder="URL til trailer">
+    <button type="submit">Registrer film</button>
+
+</form>
+<table>
+    <tbody id="tblFilmer1"></tbody>
+</table>
+
+
+<iframe id="filmVisning" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+
+<script>
+    var tblFilmer = document.getElementById("tblFilmer1");
+    var filmVisning = document.getElementById("filmVisning");
+    let skjema = document.getElementById("skjema");
+
+
+
+
+    var filmer = new Map();
+
+    function slett(id) {
+        filmer.delete(id);
+        visFilmer();
+    }
+
+    function rediger(id) {
+        var film = filmer.get(id);
+        inpID.value = id;
+        inpTittel.value = film.tittel;
+        inpTrailer.value = film.trailer;
+        filmer.delete(id);
+        visFilmer();
+    }
+
+    function visTrailer(id) {
+        var film = filmer.get(id);
+        filmVisning.src = film.trailer;
+    }
+
+    function registrerFilm(evt) {
+        evt.preventDefault();
+        var film = {
+            tittel: inpTittel.value,
+            trailer: inpTrailer.value
+        };
+        filmer.set(inpID.value, film);
+        visFilmer();
+        inpID.value = "";
+
+        inpTittel.value = "";
+        inpTrailer.value = "";
+    }
+
+
+
+
+    function visFilmer() {
+        tblFilmer.innerHTML = "";
+        for(var [key, film] of filmer ) {
+            tblFilmer.innerHTML += `
+                    <tr>
+                        <td>${film.tittel}</td>
+                        <td>
+                            <button onclick="slett('${key}')">X</button>
+                        </td>
+                        <td>
+                            <button onclick="visTrailer('${key}')">Vis trailer</button>
+                        </td>
+                        <td>
+                            <button onclick="rediger('${key}')">Endre data</button>
+                        </td>
+                    </tr>
+                `;
+        }
+    }
+    skjema.onsubmit = registrerFilm;
+    visFilmer();
+
+</script>
+
+</body>
+</html>

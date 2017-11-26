@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InpMap</title>
+</head>
+<body>
+
+    <input type="text" id="inpPnr" placeholder="personnummer">
+    <div id="info">Skriv inn personnummer for å søke i folkeregisteret</div>
+
+    <script>
+
+        let inpPnr = document.getElementById("inpPnr");
+        let info = document.getElementById("info");
+
+        var kalleKanin ={
+            pnr: "001",
+            navn: "Kalle Kanin",
+            adresse: "Kaninsvingen"
+        };
+        var tassen = {
+            pnr: "002",
+            navn: "Kåre Ku",
+            adresse: "Kutoppen"
+        };
+        var nøffe = {
+            pnr: "003",
+            navn: "Nøffe Neger",
+            adresse: "Grisestien"
+        };
+
+        var innbyggere = new Map();
+        innbyggere.set(kalleKanin.pnr, kalleKanin);
+        innbyggere.set(tassen.pnr, tassen);
+        innbyggere.set(nøffe.pnr, nøffe);
+
+        inpPnr.oninput = function () {
+
+            if(innbyggere.has(inpPnr.value)){
+                var dyr = innbyggere.get(inpPnr.value);
+                info.innerHTML = `
+               <h1>${dyr.navn}</h1>
+               <h2>${dyr.adresse}</h2>`
+            }
+
+        };
+
+
+        function visAlleDyr() {
+
+            info.innerHTML = "";
+            for(var [key,dyr] of innbyggere){
+                info.innerHTML +=`
+                <h1>${dyr.navn}</h1>
+                <h3>${dyr.adresse}</h3>
+
+           `
+            }
+        }
+        visAlleDyr();
+
+    </script>
+
+</body>
+</html>

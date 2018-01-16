@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontaktliste</title>
+    <style>
+
+        body{
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form id="frmKontakter">
+        <input type="text" id="inpFornavn" required placeholder="Fornavn">
+        <input type="text" id="inpEtternavn" required placeholder="Etternavn">
+        <input type="tel" id="inpTelefon" required placeholder="Telefon">
+        <button class="button" type="submit">Registrer ny kontakt</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Telefon</th>
+                <th>Slett</th>
+            </tr>
+            <tbody id="tbodyKontakter"></tbody>
+        </thead>
+    </table>
+
+    <script>
+
+        let frmKontakter = document.getElementById("frmKontakter");
+        let tbody = document.getElementById("tbody");
+        let inpFornavn = document.getElementById("inpFornavn");
+        let inpEtternavn = document.getElementById("inpEtternavn");
+        let Telefon = document.getElementById("Telefon");
+
+        class Kontakt{
+            constructor(fornavn, etternavn, telefon){
+                this.fornavn = fornavn;
+                this.etternavn = etternavn;
+                this.telefon = telefon;
+            }
+            get fulltNavn(){
+                return`${this.fornavn}${this.etternavn}`;
+            }
+            get tabellrad(){
+                return`
+                <tr>
+                    <td>${this.fulltNavn}</td>
+                    <td>${this.telefon}</td>
+                    <td>
+                        <button class="button" onclick="slettKontakt('${this.telefon}')">XXX</button>
+                    </td></tr> `
+
+            }
+        }
+
+        var kontakter = new Map();
+
+        function oppdaterTabell() {
+            tbodyKontakter.innerHTML = "";
+            for (var kontakt of kontakter.values()){
+                tbodyKontakter.innerHTML += kontakt.tabellrad;
+            }
+            var kontakterSomArray = Array.from(kontakter.values());
+            localStorage.mineKontakter = JSON.stringify(kontakterSomArray);
+        }
+        function slettKontakt(telefon) {
+            kontakter.delete(telefon);
+            oppdaterTabell();
+        }
+        frmKontakter.onsubmit = function (evt) {
+            evt.preventDefault();
+            var fornavn = inpFornavn.value;
+            var etternavn = inpEtternavn.value;
+            var telefon = inpTelefon.value;
+            var nyKontakt = new Kontakt(fornavn, etternavn, telefon);
+            kontakter.set(telefon, nyKontakt);
+            oppdaterTabell();
+            inpFornavn.value = inpEtternavn.value = inpTelefon.value = "";
+            inpFornavn.focus();
+        };
+
+        if (localStorage.mineKontakter){
+            var mineLagredeKontakter = JSON.parse(localStorage.mineKontakter);
+            for (var k of mineLagredeKontakter){
+                var nyKontakt = new Kontakt(k.fornavn, k.etternavn, k.telefon);
+                kontakter.set(nyKontakt.telefon, nyKontakt);
+            }
+            oppdaterTabell();
+        }
+
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

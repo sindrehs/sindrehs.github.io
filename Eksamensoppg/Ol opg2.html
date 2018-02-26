@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css">
+    <style>
+        main {
+            padding: 10px;
+            max-width: 970px;
+            margin: auto;
+        }
+        tbody img {
+            height: 20px;
+        }
+        thead span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        .gold {
+            background-color: gold;
+        }
+        .silver {
+            background-color: silver;
+        }
+        .bronze {
+            background-color: sandybrown;
+        }
+    </style>
+    <title>Oppgave 2</title>
+</head>
+<body>
+
+<main>
+
+    <form id="skjema">
+
+        <select id="selLand" required>
+            <option value="">Velg land</option>
+            <option value="0">USA</option>
+            <option value="1">Germany</option>
+            <option value="2">Canada</option>
+        </select>
+
+        <select id="selMedalje" required>
+            <option value="">Velg valør på medalje</option>
+            <option value="0">Gull</option>
+            <option value="1">Sølv</option>
+            <option value="2">Bronse</option>
+        </select>
+
+        <button type="submit" class="button expanded">OK</button>
+
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Country</th>
+            <th><span class="gold">1</span></th>
+            <th><span class="silver">2</span></th>
+            <th><span class="bronze">3</span></th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody id="tb">
+
+        </tbody>
+    </table>
+
+</main>
+
+<script>
+    const landene = [
+        {navn: "United States", flagg: "spain.png", gold: 2, silver: 4, bronze: 1, total: 7},
+        {navn: "Germany", flagg: "spain.png", gold: 0, silver: 3, bronze: 3, total: 6},
+        {navn: "Canada", flagg: "spain.png", gold: 1, silver: 0, bronze: 3, total: 0}
+    ];
+    const selLand = document.getElementById("selLand");
+    const selMedalje = document.getElementById("selMedalje");
+    const skjema = document.getElementById("skjema");
+    const tb = document.getElementById("tb");
+    function visOversikt() {
+        tb.innerHTML = "";
+        const kopi = landene.slice(0);
+        kopi.sort(function(a, b){
+            return b.total - a.total;
+        });
+        for(var land of kopi) {
+            if(land.total > 0) {
+                tb.innerHTML += `
+                    <tr>
+                        <td><img src="${land.flagg}"></td>
+                        <td>${land.navn}</td>
+                        <td>${land.gold}</td>
+                        <td>${land.silver}</td>
+                        <td>${land.bronze}</td>
+                        <td>${land.total}</td>
+                    </tr>
+                `;
+            }
+        }
+    }
+    skjema.onsubmit = function(evt) {
+        evt.preventDefault();
+        const landnr = Number(selLand.value);
+        const medaljenr = Number(selMedalje.value);
+        const land = landene[landnr];
+        if(medaljenr === 0) {
+            land.gold++;
+        } else if(medaljenr === 1) {
+            land.silver++;
+        } else if(medaljenr === 2) {
+            land.bronze++;
+        }
+        // Uansett
+        land.total++;
+        console.log(landene);
+        visOversikt();
+    };
+    visOversikt();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fugl</title>
+    <style>
+
+        #fugl{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+
+        }
+        body{
+            height: 100vh;
+            background-image: url("backgr2.jpg");
+            background-repeat: repeat-x ;
+            background-position: 0 bottom;
+
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="fugl" ><img src="ball.png" width="50" height="50"></div>
+
+<script>
+
+    let fugl = document.getElementById("fugl");
+
+    var yfart = 0;
+    var hoppfart = -8;
+    var ypos = 100;
+    var g = 0.15;
+
+    var bgpos = 0;
+    var bgfart = -2.5;
+
+    function bevegGress() {
+        bgpos = bgpos + bgfart;
+        document.body.style.backgroundPosition = bgpos + "px bottom";
+    }
+
+
+    function fly() {
+        yfart = hoppfart ++;
+        if(hoppfart > 0){
+            hoppfart = 0;
+            yfart = -10;
+        }
+    }
+
+    function fallNedover() {
+        yfart = yfart + g;
+        ypos = ypos + yfart;
+        fugl.style.top = ypos + "px";
+        console.log(ypos);
+        if(ypos >= 440){
+
+            fly();
+        }
+    }
+
+
+
+    function loop() {
+        fallNedover();
+        bevegGress();
+        requestAnimationFrame(loop);
+    }
+
+
+
+    loop();
+
+</script>
+
+</body>
+</html>

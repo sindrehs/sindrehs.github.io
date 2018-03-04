@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lagde den selv</title>
+</head>
+<body>
+
+    <canvas id="canvas" width="900" height="900"></canvas>
+    <script>
+
+        let canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var xPos = Number(prompt("Skriv inn x-koordinat"));
+        var yPos = Number(prompt("Skriv inn y-koordinat"));
+        var bredde = Number(prompt("Skriv inn bredde"));
+        var hoyde = Number(prompt("Skriv inn høyde"));
+
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 10;
+        ctx.moveTo(xPos,yPos);
+        ctx.lineTo(xPos + bredde, yPos + hoyde);
+        ctx.moveTo(xPos + bredde, yPos);
+        ctx.lineTo(xPos, yPos + hoyde);
+        ctx.stroke();
+
+    </script>
+</body>
+</html>
